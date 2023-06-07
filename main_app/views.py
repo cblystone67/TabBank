@@ -8,12 +8,13 @@ def home(request):
 
 def about(request):
   return render(request, 'about.html')
-'''
-def api_data(request):
+
+
+def search_index(request):
     url = 'https://www.songsterr.com/a/ra/songs.json?pattern=boat'
     
     response = requests.get(url)
     data = response.json()
 
-    return render(request, 'about.html', {'data': data})
-'''
+    return render(request, 'search/index.html', {'data': data})
+
