@@ -15,7 +15,7 @@ def about(request):
   return render(request, 'about.html')
 
 def search_index(request):
-  songs = Song.objects.all()
+  songs = Song.objects.filter(user=request.user)
   return render(request, 'search/index.html', {'songs': songs})
 
 '''
