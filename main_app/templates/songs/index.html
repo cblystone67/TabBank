@@ -6,7 +6,7 @@
 {% for song in songs %}
 
 <div class='card'>
-  <a href='/songs/{{song.id}}'>
+  <a href='{% url 'details' song.id %}'>
   <div class="card-content col s12 m2">
     <span class="card-title">{{ song.title }} </span>
     <p> Artist: {{song.artist }}</p>
