@@ -20,5 +20,5 @@ class Song(models.Model):
     return (self.title)
   
   def get_absolute_url(self):
-      return reverse("detail", kwargs={"song_id": self.id})
+      return reverse("details", kwargs={"song_id": self.id})
   

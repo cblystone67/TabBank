@@ -14,10 +14,13 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-def search_index(request):
+def songs_index(request):
   songs = Song.objects.filter(user=request.user)
-  return render(request, 'search/index.html', {'songs': songs})
+  return render(request, 'songs/index.html', {'songs': songs})
 
+def songs_details(request, song_id):
+  song = Song.objects.get(id=song_id)
+  return render(request, 'songs/details.html', {'song': song})
 '''
 def search_index(request):
     url = 'https://www.songsterr.com/a/ra/songs.json?pattern=boat'
