@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-
+from .models import Song
 from django.shortcuts import render, redirect
 import requests
 
@@ -14,9 +14,11 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
+def search_index(request):
+  songs = Song.objects.all()
+  return render(request, 'search/index.html', {'songs': songs})
 
-
-
+'''
 def search_index(request):
     url = 'https://www.songsterr.com/a/ra/songs.json?pattern=boat'
     
@@ -24,7 +26,7 @@ def search_index(request):
     data = response.json()
 
     return render(request, 'search/index.html', {'data': data})
-
+'''
 def signup(request):
   error_message = ''
   if request.method == "POST":

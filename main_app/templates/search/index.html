@@ -3,13 +3,12 @@
 {% block content %}
 
 <h1>Search List</h1>
-{% for song in data %}
+{% for song in songs %}
 
 <div class='card'>
   <div class="card-content col s12 m2">
     <span class="card-title">{{ song.title }} </span>
-    <p> Artist: {{song.artist.name }}</p>
-    <p> Song Id: {{song.id}}</p>
+    <p> Artist: {{song.artist }}</p>
   </div>
 </div>
 {% endfor %}
