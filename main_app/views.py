@@ -1,4 +1,9 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
+from django.shortcuts import render, redirect
 import requests
 
 
@@ -17,4 +22,17 @@ def search_index(request):
     data = response.json()
 
     return render(request, 'search/index.html', {'data': data})
+
+def signup(request):
+  error_message = ''
+  if request.method == "POST":
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+  else:
+    error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  return render(request, 'registration/signup.html', {'form': form, 'error': error_message})
 
