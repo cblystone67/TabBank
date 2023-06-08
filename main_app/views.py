@@ -15,6 +15,8 @@ def about(request):
   return render(request, 'about.html')
 
 
+
+
 def search_index(request):
     url = 'https://www.songsterr.com/a/ra/songs.json?pattern=boat'
     
@@ -31,8 +33,8 @@ def signup(request):
       user = form.save()
       login(request, user)
       return redirect('index')
-  else:
-    error_message = 'Invalid sign up - try again'
+    else:
+      error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
-  return render(request, 'registration/signup.html', {'form': form, 'error': error_message})
+  return render(request, 'registration/signup.html', {'form': form, 'error': error_message} )
 
