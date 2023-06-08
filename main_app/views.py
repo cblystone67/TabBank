@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from .models import Song
 from django.shortcuts import render, redirect
 import requests
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
@@ -30,6 +31,22 @@ def search_index(request):
 
     return render(request, 'search/index.html', {'data': data})
 '''
+class SongCreate(CreateView):
+  model = Song
+  fields = ['title', 'artist']
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+  
+class SongUpdate(UpdateView):
+  model = Song
+  fields = ['title', 'artist']
+  
+class SongDelete(DeleteView):
+  model = Song
+  success_url = '/songs/'
+  
+  
 def signup(request):
   error_message = ''
   if request.method == "POST":

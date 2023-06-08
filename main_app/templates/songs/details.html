@@ -3,11 +3,15 @@
 
 
 <h1>Song Details</h1>
-<div class="card">
-  <div class="card-content">
+<div class="card purple lighten-2">
+  <div class="card-content black-text">
     <span class="card-title">{{song.title}}</span>
     <p>Artist: {{ song.artist }}</p>
     <p>Owner: {{ song.user }}</p>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'songs_update' song.id %}">Edit This Song</a>
+    <a href="{% url 'songs_delete' song.id %}">Delete This Song</a>
   </div>
 </div>
 
