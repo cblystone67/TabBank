@@ -1,0 +1,1 @@
+web: gunicorn tabbank.wsgi --log-file -
