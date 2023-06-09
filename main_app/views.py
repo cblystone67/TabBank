@@ -1,12 +1,12 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .models import Song
 #from bs4 import BeautifulSoup
-from django.shortcuts import render, redirect
 import requests
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 # Create your views here.
