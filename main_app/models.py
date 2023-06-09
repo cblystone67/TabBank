@@ -1,11 +1,18 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-from datetime import date
+import requests
+#from bs4 import BeautifulSoup
+
+
 
 
 
 # Create your models here.
+'''
+class Website(models.Model):
+  name = models.CharField(max_length=255)
+'''
 
 class Song(models.Model):
   title = models.CharField(max_length=50)
@@ -15,7 +22,8 @@ class Song(models.Model):
   
   created_at = models.DateTimeField(auto_now_add=True)
   update_at = models.DateTimeField(auto_now=True)
-  
+  #link = models.URLField()
+  #website = models.ForeignKey(Website, on_delete=models.CASCADE)
   def __str__(self):
     return (self.title)
   
