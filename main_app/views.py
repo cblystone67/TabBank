@@ -10,33 +10,7 @@ import requests
 
 
 # Create your views here.
-'''
-def scrape_songs():
-    url = "https://www.guitaretab.com/fetch/?type=tab&query=Ed+Sheeran"
-    response = requests.get(url)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.content, "html.parser")
-        # Extract the songs and their details from the parsed HTML
-        # For example, if the title and artist are within <h3> tags, you could do:
-        songs = soup.find_all("h3")
-        for song in songs:
-            title = song.get_text()  # Extract the title
-            artist = ""  # Extract the artist
-            link = ""  # Extract the link
-            # Create a new Song instance and save it to the database
-            website = Website.objects.get(name="guitaretab.com")  # Get the Website instance
-            Song.objects.create(title=title, artist=artist, link=link, website=website)
-            
-def songs_index(request):
-    songs = Song.objects.filter(user=request.user)
-    return render(request, 'songs/index.html', {'songs': songs})
 
-def scrape_and_save_songs(request):
-    if request.method == "POST":
-        scrape_songs()  # Call the function to scrape and save the songs
-    return redirect("index")  # Redirect to a suitable page after scraping and saving
-  
-'''
 def home(request):
   return render(request, 'home.html')
 
@@ -52,15 +26,14 @@ def songs_details(request, song_id):
   return render(request, 'songs/details.html', {'song': song})
 
 
-'''
 def search_index(request):
     url = 'https://www.songsterr.com/a/ra/songs.json?pattern=boat'
     
     response = requests.get(url)
     data = response.json()
 
-    return render(request, 'search/index.html', {'data': data})
-'''
+    return render(request, 'about.html', {'data': data})
+
 class SongCreate(CreateView):
   model = Song
   fields = ['title', 'artist']
