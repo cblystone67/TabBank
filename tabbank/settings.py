@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+import os
 import django_heroku
 
 from pathlib import Path
@@ -117,8 +118,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-#PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 LOGIN_REDIRECT_URL = '/songs/'
 LOGOUT_REDIRECT_URL = '/'
 STATIC_URL = 'static/'
