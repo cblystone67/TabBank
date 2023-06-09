@@ -1,0 +1,5 @@
+*.log
+*.pot
+*.pyc
+__pycashe__/
+local_settings.py
