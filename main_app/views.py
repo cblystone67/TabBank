@@ -26,13 +26,13 @@ def songs_details(request, song_id):
   return render(request, 'songs/details.html', {'song': song})
 
 
-def search_index(request):
-    url = 'https://www.songsterr.com/a/ra/songs.json?pattern=boat'
+def fetch_data(request):
+    api_url = 'https://www.songsterr.com/a/ra/songs.json?pattern=shiver'
     
-    response = requests.get(url)
+    response = requests.get(api_url)
     data = response.json()
 
-    return render(request, 'about.html', {'data': data})
+    return render(request, 'songs/results.html', {'data': data})
 
 class SongCreate(CreateView):
   model = Song
