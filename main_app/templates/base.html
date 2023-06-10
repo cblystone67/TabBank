@@ -18,8 +18,8 @@
           <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;<span class="card-title deep-purple-text">"TabBank"</span> Welcome {{user}}</a></li>
         </ul>
         <ul class="right">
-          <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
+          <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'index' %}">Songs</a></li>
           <li><a href="{% url 'songs_create' %}">Add a Songs</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>

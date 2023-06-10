@@ -1,18 +1,14 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-import requests
-#from bs4 import BeautifulSoup
+
+
 
 
 
 
 
 # Create your models here.
-'''
-class Website(models.Model):
-  name = models.CharField(max_length=255)
-'''
 
 class Song(models.Model):
   title = models.CharField(max_length=50)
