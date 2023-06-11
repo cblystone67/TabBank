@@ -19,12 +19,12 @@
         </ul>
         <ul class="right">
           {% if user.is_authenticated %}
+          <li><a href="{% url 'about' %}">Search</a></li>
           <li><a href="{% url 'index' %}">Songs</a></li>
           <li><a href="{% url 'fetch-data' %}">Results</a></li>
           <li><a href="{% url 'songs_create' %}">Add a Songs</a></li>
           <li><a href="{% url 'logout' %}">Logout</a></li>
           {% endif %}
-          <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'login' %}">Login</a></li>
           <li><a href="{% url 'signup' %}">Signup</a></li>
 

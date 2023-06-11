@@ -13,19 +13,19 @@ import requests
 
 def home(request):
   return render(request, 'home.html')
-
+@login_required
 def about(request):
   return render(request, 'about.html')
-
+@login_required
 def songs_index(request):
   songs = Song.objects.filter(user=request.user)
   return render(request, 'songs/index.html', {'songs': songs})
-
+@login_required
 def songs_details(request, song_id):
   song = Song.objects.get(id=song_id)
   return render(request, 'songs/details.html', {'song': song})
 
-
+@login_required
 def fetch_data(request):
     songName= request.GET.get('title')
     api_url = f"https://www.songsterr.com/a/ra/songs.json?pattern={songName}"
@@ -33,22 +33,22 @@ def fetch_data(request):
     data = response.json()
     return render(request, 'songs/results.html', {'data': data})
 
-class SongCreate(CreateView):
+class SongCreate(LoginRequiredMixin, CreateView):
   model = Song
   fields = ['title', 'artist']
   def form_valid(self, form):
     form.instance.user = self.request.user
     return super().form_valid(form)
   
-class SongUpdate(UpdateView):
+class SongUpdate(LoginRequiredMixin, UpdateView):
   model = Song
   fields = ['title', 'artist']
   
-class SongDelete(DeleteView):
+class SongDelete(LoginRequiredMixin, DeleteView):
   model = Song
   success_url = '/songs/'
   
-  
+
 def signup(request):
   error_message = ''
   if request.method == "POST":
