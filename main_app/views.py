@@ -5,14 +5,17 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .models import Song
-#from bs4 import BeautifulSoup
 import requests
-
 
 # Create your views here.
 
 def home(request):
   return render(request, 'home.html')
+
+
+def music_notes(request):
+  return render(request, 'songs/music_notes.html')
+
 @login_required
 def about(request):
   return render(request, 'about.html')
@@ -33,6 +36,8 @@ def fetch_data(request):
     data = response.json()
     return render(request, 'songs/results.html', {'data': data})
 
+  
+  
 class SongCreate(LoginRequiredMixin, CreateView):
   model = Song
   fields = ['title', 'artist']

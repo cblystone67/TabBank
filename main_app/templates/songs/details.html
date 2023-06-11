@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
-
 <h1>{{song.title}} by {{song.artist}}</h1>
 <div class="card purple lighten-2">
   <div class="card-content black-text">
@@ -14,5 +12,4 @@
     <a href="{% url 'songs_delete' song.id %}">Delete This Song</a>
   </div>
 </div>
-
 {% endblock %}
