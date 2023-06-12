@@ -56,6 +56,13 @@ Upon landing on this page they now can take advantage of the application and sta
 ## API Integration
 * API used: <https://publicapis.io/songsterr-music-api>
 
+# Technologies:
+* Django
+* PostgreSQL
+* Python
+* API(Songsterr)
+* Materialize
+
 # Development
 * Usage of Trello to design and implement process.
 * <https://trello.com/b/o3rskdzm/tabbank>
