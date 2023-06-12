@@ -5,9 +5,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .models import Song, Comments
+from .models import Song, Comments, Genre
 from .forms import CommentsForm
 from django.utils import timezone
+
 
 import requests
 
@@ -18,7 +19,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('about')
+      return redirect('index')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
@@ -40,9 +41,12 @@ def songs_index(request):
   return render(request, 'songs/index.html', {'songs': songs})
 
 @login_required
+
 def songs_details(request, song_id):
   song = Song.objects.get(id=song_id)
+  genres = song.genres.all() #new
   comments_form = CommentsForm(request.POST or None)
+  all_genres = Genre.objects.all()
   if request.method == 'POST' and comments_form.is_valid():
     comment = comments_form.save(commit=False)
     comment.song = song
@@ -54,7 +58,9 @@ def songs_details(request, song_id):
     comments_form = CommentsForm()
   context = {
     'song': song,
+    'genres': genres,
     'comment_form': comments_form,
+    'all_genres': all_genres,
   }
   return render(request, 'songs/details.html', context)
 
@@ -65,7 +71,7 @@ def fetch_data(request):
     response = requests.get(api_url)
     data = response.json()
     return render(request, 'songs/results.html', {'data': data})
- 
+
 class SongCreate(LoginRequiredMixin, CreateView):
   model = Song
   fields = ['title', 'artist']

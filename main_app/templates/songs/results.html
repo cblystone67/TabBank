@@ -7,14 +7,14 @@
     <div class='card'>
       <div class="card-content col s12 m2">
         <span class="card-title"> Song Title: {{item.title}}</span>
-        <p>Artist: {{item.artist.name}}</p>
+        <p class="teal-text">Artist: {{item.artist.name}}</p>
         <p>Song_Id: {{item.id}}</p>
       </div>
       <form action="{% url 'songs_create' %}" method="POST">
         {% csrf_token %}
         <input type="hidden" submit="submit" name="title" value="{{item.title}}">
         <input type="hidden" submit="submit" name="artist" value="{{item.artist.name}}">
-        <input type="submit" value="Save">
+        <input type="submit" value="Save" class="btn-large green">
       </form>
     </div>
     {% endfor %}

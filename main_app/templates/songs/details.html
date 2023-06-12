@@ -6,6 +6,12 @@
     <span class="card-title">{{song.title}}</span>
     <p>Artist: {{ song.artist }}</p>
     <p>Owner: {{ song.user }}</p>
+    <!----------- -------------->
+    <p>Genres:
+      {% for genre in genres %}
+      {{ genre.name}}{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+    </p>
   </div>
   <div class="card-action">
     <a href="{% url 'songs_update' song.id %}" class="btn-large blue">Edit This Song</a>
@@ -31,4 +37,17 @@
     <textarea name="comment_text" rows="4" cols="50"></textarea><br>
     <button type="submit" class="btn-large green">Add Comments</button>
   </form>
+  <hr>
+  <form method="POST">
+    {% csrf_token %}
+    <label for="genre">Select a Genre:</label>
+      <select name="genre" id="genre">
+      <option value="">Select Genre</option>
+      {% for genre in all_genres %}
+      <option value="{{ genre.id }}">{{ genre.name }}</options>
+        {% endfor %}
+      </select>
+    <button type="submit" class="btn-small blue">Add Genre</button>
+    </form>
+      
 {% endblock %}
