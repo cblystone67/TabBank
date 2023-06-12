@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .models import Song, Comments
@@ -12,6 +12,18 @@ from django.utils import timezone
 import requests
 
 # Create your views here.
+def signup(request):
+  error_message = ''
+  if request.method == "POST":
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('about')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  return render(request, 'registration/signup.html', {'form': form, 'error': error_message} )
 
 def home(request):
   return render(request, 'home.html')
@@ -33,7 +45,6 @@ def songs_index(request):
 @login_required
 def songs_details(request, song_id):
   song = Song.objects.get(id=song_id)
-
   comments_form = CommentsForm(request.POST or None)
   if request.method == 'POST' and comments_form.is_valid():
     comment = comments_form.save(commit=False)
@@ -44,7 +55,6 @@ def songs_details(request, song_id):
     return redirect('details', song_id=song_id)
   else: 
     comments_form = CommentsForm()
-    
   context = {
     'song': song,
     'comment_form': comments_form,
@@ -79,16 +89,20 @@ class SongDelete(LoginRequiredMixin, DeleteView):
   success_url = '/songs/'
   
 
-def signup(request):
-  error_message = ''
-  if request.method == "POST":
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-      return redirect('about')
-    else:
-      error_message = 'Invalid sign up - try again'
-  form = UserCreationForm()
-  return render(request, 'registration/signup.html', {'form': form, 'error': error_message} )
+class CommentUpdate(LoginRequiredMixin, UpdateView):
+  model = Comments
+  fields = ['comment_text']
+  template_name = 'main_app/comment_update_form.html'
+  
+  def get_success_url(self):
+    return reverse('details', kwargs={'song_id': self.object.song.id})
+  
+class CommentDelete(LoginRequiredMixin, DeleteView):
+  model = Comments
+  template_name = 'main_app/comment_confirm_delete.html'
+  def get_success_url(self):
+    song_id = self.object.song.id
+    return reverse_lazy('details', kwargs={'song_id': song_id})
+  
+  
 

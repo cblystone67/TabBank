@@ -18,8 +18,10 @@
       <div class="card-content">
         <p>{{ comment.comment_text }}</p>
         <p>Created at: {{ comment.created_at }}</p>
-        <p>User: {{ comment.user }}</p>
+        <p>Author: {{ comment.user }}</p>
       </div>
+      <a href="{% url 'comment_update' comment.id %}">Edit</a>
+      <a href="{% url 'comment_delete' comment.id %}">Delete</a>
     </div>
   {% empty %}
     <p>No comments yet.</p>
