@@ -1,5 +1,5 @@
 # TabBank
-## TabBank is a Django-based web application that allows users to store and organize guitar tabs and related information. It provides a user-friendly interface for managing tabs, searching for new tabs, and collaborating with others.
+## TabBank is a Django-based web application that allows users to store and organize songs along with their own with related information. It provides a user-friendly interface for managing songs, searching for new songs, and collaborating with others.
 
 ### Installation
 * Copy code
