@@ -46,6 +46,11 @@ Upon landing on this page they now can take advantage of the application and sta
 - Upon the user submitting the search they are then given the results page:
 ![Screenshot](main_app/static/images/ResultsPage.png)
 
+- Now the user if finding a song they choose can then save it to their user account:
+![Screenshot](main_app/static/images/DetailsPage.png)
+
+-Now the user also has the ability if they didn't find the song they so desired they can just add it to the list of songs by using the Add a Song feature:
+![Screenshot](main_app/static/images/AddSong.png)
 
 
 
