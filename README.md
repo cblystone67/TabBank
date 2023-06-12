@@ -56,6 +56,12 @@ Upon landing on this page they now can take advantage of the application and sta
 ## API Integration
 * API used: <https://publicapis.io/songsterr-music-api>
 
+# Development
+* Usage of Trello to design and implement process.
+* <https://trello.com/b/o3rskdzm/tabbank>
+* Usage of lucid.app to design and implement Wireframe and ERD
+* <https://lucid.app/lucidchart/57660680-a4f7-4068-bda9-ad49dac2e26f/edit?page=0_0&invitationId=inv_fd8880b1-ed2f-46b8-979a-d4a371067eff#>
+
 ## Icebox Challenges
 * First would be allowing the tab of the songs the user selected to be viewed.
 * Second would be to add functionality so that the user could either be redirected to one of the many learning sites or have them render dynamically on the page in a static or embeded video
