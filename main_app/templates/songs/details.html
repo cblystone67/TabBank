@@ -8,8 +8,8 @@
     <p>Owner: {{ song.user }}</p>
   </div>
   <div class="card-action">
-    <a href="{% url 'songs_update' song.id %}">Edit This Song</a>
-    <a href="{% url 'songs_delete' song.id %}">Delete This Song</a>
+    <a href="{% url 'songs_update' song.id %}" class="btn-large blue">Edit This Song</a>
+    <a href="{% url 'songs_delete' song.id %}" class="btn-large red">Delete This Song</a>
   </div>
 </div>
 <h2>Comments</h2>
@@ -20,8 +20,8 @@
         <p>Created at: {{ comment.created_at }}</p>
         <p>Author: {{ comment.user }}</p>
       </div>
-      <a href="{% url 'comment_update' comment.id %}">Edit</a>
-      <a href="{% url 'comment_delete' comment.id %}">Delete</a>
+      <a href="{% url 'comment_update' comment.id %}" class="btn-large blue">Edit</a>
+      <a href="{% url 'comment_delete' comment.id %}" class="btn-large red">Delete</a>
     </div>
   {% empty %}
     <p>No comments yet.</p>
@@ -29,6 +29,6 @@
   <form method="POST">
 {% csrf_token %}
     <textarea name="comment_text" rows="4" cols="50"></textarea><br>
-    <button type="submit">Add Comments</button>
+    <button type="submit" class="btn-large green">Add Comments</button>
   </form>
 {% endblock %}
