@@ -28,6 +28,8 @@ class Comments(models.Model):
   comment_text = models.TextField(default=now)
   user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
   
+  created_at = models.DateTimeField(auto_now_add=True)
+  
   def __str__(self) -> str:
     return self.comment_text[:50] + '...' if len(self.comment_text) > 50 else self.comment_text
   class Meta:

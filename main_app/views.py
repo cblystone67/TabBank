@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from .models import Song, Comments
 from .forms import CommentsForm
-from django.shortcuts import get_object_or_404
+from django.utils import timezone
 
 import requests
 
@@ -27,23 +27,31 @@ def about(request):
 def songs_index(request):
   songs = Song.objects.filter(user=request.user)
   return render(request, 'songs/index.html', {'songs': songs})
+
+
 #---------Details-----------------
 @login_required
 def songs_details(request, song_id):
   song = Song.objects.get(id=song_id)
-  
+
   comments_form = CommentsForm(request.POST or None)
   if request.method == 'POST' and comments_form.is_valid():
     comment = comments_form.save(commit=False)
     comment.song = song
     comment.user = request.user
+    comment.created_at = timezone.now()
     comment.save()
     return redirect('details', song_id=song_id)
+  else: 
+    comments_form = CommentsForm()
+    
   context = {
     'song': song,
     'comment_form': comments_form,
   }
   return render(request, 'songs/details.html', context)
+#===============================================================
+
 
 @login_required
 def fetch_data(request):
