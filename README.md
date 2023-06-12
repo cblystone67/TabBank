@@ -22,7 +22,7 @@
 * The user can delete songs and comments.
 
 
-![Screenshot](main_app/css/images/HomePage.png)
+![Screenshot](main_app/static/images/HomePage.png)
 
 
 
