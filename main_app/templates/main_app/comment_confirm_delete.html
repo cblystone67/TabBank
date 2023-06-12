@@ -3,10 +3,11 @@
 {% block content %}
   <h1>Delete Comment</h1>
 
-  <p>{{user}} are you sure you want to delete this comment?</p>
+  <h4>{{user}} are you sure you want to delete this comment?</h4>
 
   <form method="POST">
     {% csrf_token %}
     <button type="submit" class="btn-large red">Delete</button>
+    <a href="{% url 'details' song_id=song_id %}" class="btn-large blue">Cancel</a>
   </form>
 {% endblock %}

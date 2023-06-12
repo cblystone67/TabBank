@@ -103,6 +103,12 @@ class CommentDelete(LoginRequiredMixin, DeleteView):
   def get_success_url(self):
     song_id = self.object.song.id
     return reverse_lazy('details', kwargs={'song_id': song_id})
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['song_id'] = self.object.song.id
+    return context
+  
+  
   
   
 
