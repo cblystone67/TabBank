@@ -12,4 +12,21 @@
     <a href="{% url 'songs_delete' song.id %}">Delete This Song</a>
   </div>
 </div>
+<h2>Comments</h2>
+  {% for comment in song.comments.all %}
+    <div class="card">
+      <div class="card-content">
+        <p>{{ comment.comment_text }}</p>
+        <p>Created at: {{ comment.created_at }}</p>
+        <p>User: {{ comment.user }}</p>
+      </div>
+    </div>
+  {% empty %}
+    <p>No comments yet.</p>
+  {% endfor %}
+  <form method="POST">
+{% csrf_token %}
+    <textarea name="comment_text" rows="4" cols="50"></textarea><br>
+    <button type="submit">Add Comments</button>
+  </form>
 {% endblock %}

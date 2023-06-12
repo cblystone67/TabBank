@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.utils.timezone import now
+
+
 
 # Create your models here.
 class Song(models.Model):
@@ -18,6 +21,17 @@ class Song(models.Model):
   
   def get_absolute_url(self):
       return reverse("details", kwargs={"song_id": self.id})
+  
+
+class Comments(models.Model):
+  song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name='comments', default=1)
+  comment_text = models.TextField(default=now)
+  user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+  
+  def __str__(self) -> str:
+    return self.comment_text[:50] + '...' if len(self.comment_text) > 50 else self.comment_text
+  class Meta:
+    ordering = ['-song__created_at']
   
 class Genre(models.Model):
   STYLES = (
@@ -57,4 +71,6 @@ class Genre(models.Model):
   
   def __str__(self) -> str:
      return f"{self.get_style_display()} on {self.style}"
+  
+  
   

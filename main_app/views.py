@@ -2,9 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .models import Song
+from .models import Song, Comments
+from .forms import CommentsForm
+from django.shortcuts import get_object_or_404
+
 import requests
 
 # Create your views here.
@@ -23,10 +27,23 @@ def about(request):
 def songs_index(request):
   songs = Song.objects.filter(user=request.user)
   return render(request, 'songs/index.html', {'songs': songs})
+#---------Details-----------------
 @login_required
 def songs_details(request, song_id):
   song = Song.objects.get(id=song_id)
-  return render(request, 'songs/details.html', {'song': song})
+  
+  comments_form = CommentsForm(request.POST or None)
+  if request.method == 'POST' and comments_form.is_valid():
+    comment = comments_form.save(commit=False)
+    comment.song = song
+    comment.user = request.user
+    comment.save()
+    return redirect('details', song_id=song_id)
+  context = {
+    'song': song,
+    'comment_form': comments_form,
+  }
+  return render(request, 'songs/details.html', context)
 
 @login_required
 def fetch_data(request):
