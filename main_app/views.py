@@ -11,7 +11,6 @@ from django.utils import timezone
 
 import requests
 
-# Create your views here.
 def signup(request):
   error_message = ''
   if request.method == "POST":
@@ -28,20 +27,18 @@ def signup(request):
 def home(request):
   return render(request, 'home.html')
 
-
 def music_notes(request):
   return render(request, 'songs/music_notes.html')
 
 @login_required
 def about(request):
   return render(request, 'about.html')
+
 @login_required
 def songs_index(request):
   songs = Song.objects.filter(user=request.user)
   return render(request, 'songs/index.html', {'songs': songs})
 
-
-#---------Details-----------------
 @login_required
 def songs_details(request, song_id):
   song = Song.objects.get(id=song_id)
@@ -60,8 +57,6 @@ def songs_details(request, song_id):
     'comment_form': comments_form,
   }
   return render(request, 'songs/details.html', context)
-#===============================================================
-
 
 @login_required
 def fetch_data(request):
@@ -70,9 +65,7 @@ def fetch_data(request):
     response = requests.get(api_url)
     data = response.json()
     return render(request, 'songs/results.html', {'data': data})
-
-  
-  
+ 
 class SongCreate(LoginRequiredMixin, CreateView):
   model = Song
   fields = ['title', 'artist']
@@ -88,7 +81,6 @@ class SongDelete(LoginRequiredMixin, DeleteView):
   model = Song
   success_url = '/songs/'
   
-
 class CommentUpdate(LoginRequiredMixin, UpdateView):
   model = Comments
   fields = ['comment_text']
@@ -107,8 +99,3 @@ class CommentDelete(LoginRequiredMixin, DeleteView):
     context = super().get_context_data(**kwargs)
     context['song_id'] = self.object.song.id
     return context
-  
-  
-  
-  
-

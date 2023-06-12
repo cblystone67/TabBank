@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
   <div class="container">
-    <!-- Page Content goes here -->
     {%if data %}
     <h2>Search Results</h2>
     {% for item in data %}
@@ -20,8 +19,8 @@
     </div>
     {% endfor %}
     {% else %}
-    <h2>No Search Results Found</h2>
-    <a href={% url 'about' %}> Return to Search</a>
+      <h2>No Search Results Found</h2>
+      <a href={% url 'about' %}> Return to Search</a>
     {% endif %}
   </div>
 {% endblock %}

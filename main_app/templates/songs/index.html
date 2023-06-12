@@ -8,11 +8,11 @@
 
 <div class='card'>
   <a href='{% url 'details' song.id %}'>
-  <div class="card-content col s12 m2">
-    <span class="card-title">{{ song.title }} </span>
-    <p> Artist: {{song.artist }}</p>
-    <p>Owner: {{song.user}} updated: {{song.update_at}}</p>
-  </div>
+    <div class="card-content col s12 m2">
+      <span class="card-title">{{ song.title }} </span>
+        <p> Artist: {{song.artist }}</p>
+        <p>Owner: {{song.user}} updated: {{song.update_at}}</p>
+    </div>
   </a>
 </div>
 {% endfor %}
