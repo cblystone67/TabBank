@@ -53,14 +53,19 @@ Upon landing on this page they now can take advantage of the application and sta
 ![Screenshot](main_app/static/images/AddSong.png)
 
 
-
-
-
-
 ## API Integration
 * API used: <https://publicapis.io/songsterr-music-api>
-Icebox Challenges
 
+## Icebox Challenges
+* First would be allowing the tab of the songs the user selected to be viewed.
+* Second would be to add functionality so that the user could either be redirected to one of the many learning sites or have them render dynamically on the page in a static or embeded video
+* Third would be to set up the functionality so a user could store their own music and song lyrics.  
+- Creating for the user a place where they can create and store their ideas and visions.
+
+
+# Deployment
+* Deployed to Heroku link below:
+<https://dry-tundra-23500.herokuapp.com/>
 
 
 
