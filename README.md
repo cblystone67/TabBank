@@ -21,10 +21,17 @@
 * The user can update and edit those songs and comments
 * The user can delete songs and comments.
 
-API Integration
+
+![Screenshot](main_app/css/images/HomePage.png)
+
+
+
+
+## API Integration
+* API used: <https://publicapis.io/songsterr-music-api>
 Icebox Challenges
-Contributing
-License
-Installation
-Clone the repository to your local machine.
+
+
+
+
 
